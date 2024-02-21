@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "wdio": "wdio run ./wdio.conf.js",
-    "android": "PLATFORM=ANDROID npx wdio run wdio.conf.js --spec test/specs/login.test.js"
+    "android": "PLATFORM=ANDROID npx wdio run wdio.conf.js --spec test/specs/purchaseItem.test.js"
   },
   "keywords": [],
   "author": "",

@@ -4,7 +4,7 @@
 class LoginPage {
 
     locators = {
-        profileEle: "id:com.ultralesson.ulshopify:id/icon-profile",
+        profileEle: "#icon-profile",
         loginButton: "id:com.ultralesson.ulshopify:id/txt-login",
         emailInputField: "id:com.ultralesson.ulshopify:id/inp-email",
         passwordInputField: "id:com.ultralesson.ulshopify:id/inp-password"
