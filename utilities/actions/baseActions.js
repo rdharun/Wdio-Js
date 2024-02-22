@@ -20,17 +20,17 @@ class BaseActions {
                     break;
                 }
 
-                const startX = 893; 
-                const endX = 59; 
+                const startX = 893;
+                const endX = 59;
                 const startY = 1809;
 
                 await driver
-                .action('pointer')
-                .move({ x: startX, y: startY })
-                .down()
-                .pause(500)
-                .move({ x: endX, y: startY })
-                .perform();
+                    .action('pointer')
+                    .move({ x: startX, y: startY })
+                    .down()
+                    .pause(500)
+                    .move({ x: endX, y: startY })
+                    .perform();
 
             }
 

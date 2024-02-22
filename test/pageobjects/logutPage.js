@@ -14,6 +14,7 @@ class LogoutPage {
             (await HomePage.getProfileEle()).click();
         }
         (await $(this.locators.logutButton)).click();
+        await driver.pause(10000)
     }
 
 }
