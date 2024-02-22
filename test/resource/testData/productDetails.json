@@ -1,0 +1,17 @@
+[
+    {
+        "productName": "Elegant Suite",
+        "productPrice": "249.99",
+        "description": "A sophisticated and stylish suit, perfect for business or formal occasions. Tailored for a sleek fit with premium materials."
+    },
+    {
+        "productName": "Running Sneakers",
+        "productPrice": "119.99",
+        "description": "High-performance running shoes with enhanced cushioning and durability for long-distance runners."
+    },
+    {
+        "productName": "High-Fidelity Headphones",
+        "productPrice": "199.99",
+        "description": "Experience unparalleled sound quality with these High-Fidelity Headphones. Designed for audiophiles, these headphones offer crisp, detailed audio reproduction and comfortable, long-wearing design."
+    }
+]
