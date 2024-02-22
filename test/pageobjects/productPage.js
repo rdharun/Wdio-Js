@@ -23,6 +23,13 @@ class ProductPage {
         return $(this.locators.goToCartButton);
     }
 
+    async clickGoToCartButton() {
+        (await $(this.locators.goToCartButton)).click();
+    }
+
+    async clickAddToCartButton() {
+        (await $(this.locators.addToCartButton)).click();
+    }
 
     async findProductElementByName(productName) {
         const allProductElements = await this.getProductTitle();

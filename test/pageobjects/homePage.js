@@ -30,6 +30,11 @@ class HomePage {
         return await $(this.locators.exploreMore);
     }
 
+
+    async clickExploreButton() {
+        (await $(this.locators.exploreMore)).waitForDisplayed();
+        (await $(this.locators.exploreMore)).click();
+    }
 }
 
 
