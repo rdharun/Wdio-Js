@@ -9,7 +9,8 @@ const ANDROID_CAPABILITIES = [
         "appium:deviceName": "Pixel_6_Pro_API_33",
         "appium:automationName": "UIAutomator2",
         "appium:udid": "emulator-5554",
-        "appium:app": "/Users/testvagrant_1/Desktop/APK/android_ul_shopify_app.apk",
+        "appium:app": `${process.cwd()}/app/android/android_ul_shopify_app.apk`,
+
     },
 ];
 

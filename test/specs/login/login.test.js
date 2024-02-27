@@ -1,19 +1,30 @@
 const { expect } = require('chai');
-const LoginPage = require('../../pageobjects/loginPage');
 const OtpPage = require('../../pageobjects/otpPage');
 const HomePage = require('../../pageobjects/homePage');
-const LogoutPage = require('../../pageobjects/logutPage');
+const ProfilePage = require('../../pageobjects/profilePage');
+const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
+const DataLoader = require('../../../utilities/file/dataLoder')
+
 
 
 describe('My Login application', () => {
 
+    let credentialsData;
+
+    before(async () => {
+        credentialsData = DataLoader.loadData('credentials.json');
+    });
+
     afterEach(async () => {
-        await LogoutPage.logout();
+        await ProfilePage.logout();
     })
 
+
     it('should login with valid credentials', async () => {
-        await LoginPage.login('ulshopify@ultralesson.com', '12345');
-        await OtpPage.enterOtp('0000');
+
+        const validCredentials = credentialsData.credentialsSets.validCredentials;
+        await LoginPageUtil.login(validCredentials.username, validCredentials.password);
+        await OtpPage.enterOtp(validCredentials.otp);
         const userNameText = await (await HomePage.getUserNameEle()).getText();
         expect(userNameText).to.equal('Jack Sparrow');
     })
