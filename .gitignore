@@ -8,3 +8,4 @@ allure-reports/
 allure-results
 coverage/
 screenshots/
+logs/
