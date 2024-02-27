@@ -1,24 +1,25 @@
 const { expect } = require('chai');
-const LoginPage = require('../pageobjects/loginPage');
 const OtpPage = require('../pageobjects/otpPage');
 const HomePage = require('../pageobjects/homePage');
 const BaseActions = require('../../utilities/actions/baseActions');
-const productDetailsJson = require('../resource/testData/productDetails.json');
-const FileUtils = require('../../utilities/file/fileUtils');
 const ProductPage = require('../pageobjects/productPage');
 const CartPage = require('../pageobjects/cartPage');
-
-
-
-const productDetailsList = FileUtils.convertJsonToCustomType(productDetailsJson);
-
+const DataLoader = require('../../utilities/file/dataLoder')
+const LoginPageUtil = require('../commonFunctions/loginPageUtil');
 
 
 describe('My Login application', () => {
 
+    let credentialsData;
+    let productDetails;
+
     before(async () => {
-        await LoginPage.login('ulshopify@ultralesson.com', '12345');
-        await OtpPage.enterOtp('0000');
+        credentialsData = DataLoader.loadData('credentials.json');
+        productDetails = DataLoader.loadData('productDetails.json');
+
+        const validCredentials = credentialsData.credentialsSets.validCredentials;
+        await LoginPageUtil.login(validCredentials.username, validCredentials.password);
+        await OtpPage.enterOtp(validCredentials.otp);
     })
 
 
@@ -29,8 +30,8 @@ describe('My Login application', () => {
         // Click on explore more
         await HomePage.clickExploreButton();
 
-        await driver.pause(10000)
-        await ProductPage.selectProductByName(productDetailsList[1].productName);
+        await driver.pause(10000);
+        await ProductPage.selectProductByName(productDetails[1].productName);
 
         // Click on add to cart
         await ProductPage.clickAddToCartButton();

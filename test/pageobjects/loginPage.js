@@ -31,18 +31,16 @@ class LoginPage {
         return $(this.locators.wrongPasswordLabel);
     }
 
-    async login(username, password) {
-        await driver.pause(4000);
-        if ((await $(this.locators.profileEle)).isDisplayed()) {
-            (await $(this.locators.profileEle)).click();
-        }
-        (await $(this.locators.loginButton)).click();
-        await driver.pause(4000);
-        (await $(this.locators.emailInputField)).addValue(username);
-        (await $(this.locators.passwordInputField)).addValue(password);
-        (await $(this.locators.loginButton)).click();
-        await driver.pause(4000);
+    async enterCredentials(username, password) {
+        (await $(this.locators.emailInputField)).setValue(username);
+        (await $(this.locators.passwordInputField)).setValue(password);
     }
+
+    async clickOnLoginButton() {
+        (await $(this.locators.loginButton)).waitForDisplayed({timeout: 3000});
+        (await $(this.locators.loginButton)).click();
+    }
+
 }
 
 
