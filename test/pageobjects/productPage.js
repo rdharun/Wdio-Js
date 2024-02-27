@@ -49,4 +49,4 @@ class ProductPage {
     }
 }
 
-module.exports = new ProductPage();
+module.exports = ProductPage;

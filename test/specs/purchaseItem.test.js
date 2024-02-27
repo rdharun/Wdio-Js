@@ -13,32 +13,44 @@ describe('My Login application', () => {
 
     let validCredentials;
     let productDetails;
+    let homePage;
+    let productPage;
+    let cartPage;
+    let loginPageUtil;
+    let baseActions;
+    let otpPage;
 
     before(async () => {
         validCredentials = credentialsJson.credentialsSets.validCredentials;
         productDetails = jsonData;
-        await LoginPageUtil.login(validCredentials.username, validCredentials.password);
-        await OtpPage.enterOtp(validCredentials.otp);
+        homePage = new HomePage();
+        productPage = new ProductPage();
+        cartPage = new CartPage();
+        loginPageUtil = new LoginPageUtil();
+        baseActions = new BaseActions();
+        otpPage = new OtpPage();
+        await loginPageUtil.login(validCredentials.username, validCredentials.password);
+        await otpPage.enterOtp(validCredentials.otp);
     })
 
 
     it('Should be able to place a an order with single product', async () => {
-        const plusIcon = await HomePage.getPlusIconEle();
-        await BaseActions.horizontalSwipe(plusIcon);
+        const plusIcon = await homePage.getPlusIconEle();
+        await baseActions.horizontalSwipe(plusIcon);
 
         // Click on explore more
-        await HomePage.clickExploreButton();
+        await homePage.clickExploreButton();
 
         await driver.pause(10000);
-        await ProductPage.selectProductByName(productDetails[1].productName);
+        await productPage.selectProductByName(productDetails[1].productName);
 
         // Click on add to cart
-        await ProductPage.clickAddToCartButton();
-        await ProductPage.clickGoToCartButton();
-        await CartPage.clickPlaceOrderButton();
+        await productPage.clickAddToCartButton();
+        await productPage.clickGoToCartButton();
+        await cartPage.clickPlaceOrderButton();
 
         // Wait for order confirmation label to be displayed and get the text
-        const orderMsgElement = await CartPage.getOrderConfirmationLabelEle();
+        const orderMsgElement = await cartPage.getOrderConfirmationLabelEle();
         await orderMsgElement.waitForDisplayed({ timeout: 10000 });
         const orderMsg = await orderMsgElement.getText();
         expect(orderMsg).to.contain('Your order has been confirmed');

@@ -12,18 +12,24 @@ class ProfilePage {
 
     }
 
+
+
+    async getLogoutButtonEle() {
+        return $(this.locators.logutButton);
+    }
+
     async clickOnLoginButton() {
         (await $(this.locators.loginButton)).click();
     }
 
-    async logout() {
-        if ((await HomePage.getProfileEle()).isDisplayed()) {
-            (await HomePage.getProfileEle()).click();
-        }
-        (await $(this.locators.logutButton)).click();
-    }
+    // async logout() {
+    //     if ((await HomePage.getProfileEle()).isDisplayed()) {
+    //         (await HomePage.getProfileEle()).click();
+    //     }
+    //     (await $(this.locators.logutButton)).click();
+    // }
 
 
 }
 
-module.exports = new ProfilePage();
+module.exports = ProfilePage;

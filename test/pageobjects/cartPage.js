@@ -32,4 +32,4 @@ class CartPage {
 
 }
 
-module.exports = new CartPage();
+module.exports = CartPage;

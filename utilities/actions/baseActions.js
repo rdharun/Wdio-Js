@@ -90,4 +90,4 @@ class BaseActions {
 
 
 
-module.exports = new BaseActions();
+module.exports = BaseActions;

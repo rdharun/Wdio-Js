@@ -32,14 +32,17 @@ class LoginPage {
     }
 
     async enterCredentials(username, password) {
-        // await this.setValue(this.locators.emailInputField, username);
-        // await this.setValue(this.locators.passwordInputField, password);
-        (await $(this.locators.emailInputField)).setValue(username);
-        (await $(this.locators.passwordInputField)).setValue(password);
+        const emailInputField = await $(this.locators.emailInputField);
+        await emailInputField.waitForDisplayed({ timeout: 5000 });
+        await emailInputField.setValue(username);
+
+        const passwordInputField = await $(this.locators.passwordInputField);
+        await passwordInputField.waitForDisplayed({ timeout: 5000 }); // Wait for password input field to be displayed
+        await passwordInputField.setValue(password);
     }
 
     async clickOnLoginButton() {
-        (await $(this.locators.loginButton)).waitForDisplayed({timeout: 3000});
+        (await $(this.locators.loginButton)).waitForDisplayed({ timeout: 3000 });
         (await $(this.locators.loginButton)).click();
         // await this.waitForDisplayed(this.locators.loginButton);
         // await this.click(this.locators.loginButton);
@@ -49,4 +52,4 @@ class LoginPage {
 
 
 // export default new LoginPage()
-module.exports = new LoginPage();
+module.exports = LoginPage;
