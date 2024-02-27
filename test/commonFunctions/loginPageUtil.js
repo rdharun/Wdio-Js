@@ -4,18 +4,31 @@ const LoginPage = require('../pageobjects/loginPage');
 const HomePage = require('../pageobjects/homePage');
 const ProfilePage = require('../pageobjects/profilePage');
 
+
+const profilePage = new ProfilePage();
+const loginPage = new LoginPage();
+const homePage = new HomePage();
+
 class LoginPageUtil {
 
     async login(username, password) {
         await driver.pause(10000);
-        if ((await HomePage.getProfileEle()).isDisplayed) {
-            (await HomePage.getProfileEle()).click();
+        if ((await homePage.getProfileEle()).isDisplayed) {
+            (await homePage.getProfileEle()).click();
         }
-        await ProfilePage.clickOnLoginButton();
-        await LoginPage.enterCredentials(username, password);
-        await driver.pause(3000);
-        await LoginPage.clickOnLoginButton();
+        await profilePage.clickOnLoginButton();
+        await loginPage.enterCredentials(username, password);
+        // await driver.pause(3000);
+        await loginPage.clickOnLoginButton();
+    }
+
+
+    async logout() {
+        if ((await homePage.getProfileEle()).isDisplayed()) {
+            (await homePage.getProfileEle()).click();
+        }
+        ((await profilePage.getLogoutButtonEle()).click());
     }
 }
 
-module.exports = new LoginPageUtil();
+module.exports = LoginPageUtil;

@@ -1,9 +1,9 @@
 
 
-class BasePage  {
+class BasePage {
 
     async getElement(selector) {
-        if(typeof selector !== 'string' || !selector) {
+        if (typeof selector !== 'string' || !selector) {
             throw new Error('Invalid selector provided');
         }
         return await $(selector);
@@ -29,7 +29,7 @@ class BasePage  {
         const element = await this.getElement(selector);
         await element.waitForDisplayed({ timeoutMsg: 'Element not displayed' });
         return element.isDisplayed();
-    }   
+    }
 
     async getText(selector) {
         const element = await this.getElement(selector);
@@ -43,4 +43,4 @@ class BasePage  {
 
 }
 
-module.exports = new BasePage();
+module.exports = BasePage;

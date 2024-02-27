@@ -33,4 +33,4 @@ class OtpPage {
     }
 }
 
-module.exports = new OtpPage();
+module.exports = OtpPage;
