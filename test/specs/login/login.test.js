@@ -3,16 +3,16 @@ const OtpPage = require('../../pageobjects/otpPage');
 const HomePage = require('../../pageobjects/homePage');
 const ProfilePage = require('../../pageobjects/profilePage');
 const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
-const DataLoader = require('../../../utilities/file/dataLoder')
+const jsonData = require("../../../resources/credentials.json")
 
 
 
 describe('My Login application', () => {
 
-    let credentialsData;
+    let validCredentials;
 
     before(async () => {
-        credentialsData = DataLoader.loadData('credentials.json');
+        validCredentials = jsonData.credentialsSets.validCredentials;
     });
 
     afterEach(async () => {
@@ -22,7 +22,6 @@ describe('My Login application', () => {
 
     it('should login with valid credentials', async () => {
 
-        const validCredentials = credentialsData.credentialsSets.validCredentials;
         await LoginPageUtil.login(validCredentials.username, validCredentials.password);
         await OtpPage.enterOtp(validCredentials.otp);
         const userNameText = await (await HomePage.getUserNameEle()).getText();

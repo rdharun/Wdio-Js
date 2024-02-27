@@ -1,17 +1,10 @@
 const { expect } = require('chai');
 const LoginPage = require('../../pageobjects/loginPage');
-const DataLoader = require('../../../utilities/file/dataLoder')
 const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
+const jsonData = require("../../../resources/credentials.json")
 
 
 describe('My Login application', () => {
-
-    let credentialsData;
-
-    before(async () => {
-        credentialsData = DataLoader.loadData('credentials.json');
-    });
-
 
     it('should display the error message for blank email and password field', async () => {
         await LoginPageUtil.login('', '');
@@ -23,7 +16,7 @@ describe('My Login application', () => {
     })
 
     it('should display error message for wrong password', async () => {
-        const { username, password } = credentialsData.credentialsSets.invalidPassword;
+        const { username, password } = jsonData.credentialsSets.invalidPassword;
 
         await LoginPageUtil.login(username, password);
 
@@ -32,7 +25,7 @@ describe('My Login application', () => {
     })
 
     it('should display error message for invalid email format', async () => {
-        const { username, password } = credentialsData.credentialsSets.invalidCredentials;
+        const { username, password } = jsonData.credentialsSets.invalidCredentials;
         await LoginPageUtil.login(username, password);
 
         const emailErrMsg = await (await LoginPage.getInvalidEmailFormatMsgEle()).getText();

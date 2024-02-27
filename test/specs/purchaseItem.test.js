@@ -4,20 +4,19 @@ const HomePage = require('../pageobjects/homePage');
 const BaseActions = require('../../utilities/actions/baseActions');
 const ProductPage = require('../pageobjects/productPage');
 const CartPage = require('../pageobjects/cartPage');
-const DataLoader = require('../../utilities/file/dataLoder')
 const LoginPageUtil = require('../commonFunctions/loginPageUtil');
+const jsonData = require("../../resources/productDetails.json")
+const credentialsJson = require("../../resources/credentials.json")
 
 
 describe('My Login application', () => {
 
-    let credentialsData;
+    let validCredentials;
     let productDetails;
 
     before(async () => {
-        credentialsData = DataLoader.loadData('credentials.json');
-        productDetails = DataLoader.loadData('productDetails.json');
-
-        const validCredentials = credentialsData.credentialsSets.validCredentials;
+        validCredentials = credentialsJson.credentialsSets.validCredentials;
+        productDetails = jsonData;
         await LoginPageUtil.login(validCredentials.username, validCredentials.password);
         await OtpPage.enterOtp(validCredentials.otp);
     })
