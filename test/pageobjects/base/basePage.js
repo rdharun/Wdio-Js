@@ -3,15 +3,15 @@
 class BasePage {
 
     async getElement(selector) {
-        if (typeof selector !== 'string' || !selector) {
-            throw new Error('Invalid selector provided');
-        }
         return await $(selector);
+    }
+
+    async getElements(selector) {
+        return await $$(selector);
     }
 
     async click(selector) {
         const element = await this.getElement(selector);
-        await element.waitForDisplayed({ timeoutMsg: 'Element not displayed for click action' });
         await element.click();
     }
 
@@ -26,9 +26,13 @@ class BasePage {
     }
 
     async isDisplayed(selector) {
-        const element = await this.getElement(selector);
-        await element.waitForDisplayed({ timeoutMsg: 'Element not displayed' });
-        return element.isDisplayed();
+        try {
+            const element = await this.getElement(selector);
+            return await element.isDisplayed();
+        } catch (error) {
+            console.error(`Error occurred while checking if element is displayed: ${error}`);
+            return false;
+        }
     }
 
     async getText(selector) {
@@ -38,9 +42,8 @@ class BasePage {
 
     async waitForDisplayed(selector) {
         const element = await this.getElement(selector);
-        return await element.waitForDisplayed();
+        return await element.waitForDisplayed({ timeoutMsg: 'Element not displayed' });
     }
-
 }
 
 module.exports = BasePage;

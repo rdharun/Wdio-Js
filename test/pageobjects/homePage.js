@@ -1,11 +1,12 @@
+const BasePage = require("./base/basePage");
 
 
 
 
-class HomePage {
+class HomePage extends BasePage {
 
     locators = {
-        profileEle: "id:com.ultralesson.ulshopify:id/icon-profile",
+        profileEle: 'id:com.ultralesson.ulshopify:id/icon-profile',
         userNameEle: "id:com.ultralesson.ulshopify:id/txt-username",
         searchForMoreEle: 'id:com.ultralesson.ulshopify:id/txt-search-for-more',
         searchInput: 'id:com.ultralesson.ulshopify:id/inp-search',
@@ -15,25 +16,25 @@ class HomePage {
     }
 
     async getUserNameEle() {
-        return await $(this.locators.userNameEle)
+        return this.getElement(this.locators.userNameEle);
     }
 
     async getProfileEle() {
-        return await $(this.locators.profileEle);
+        return this.getElement(this.locators.profileEle);
     }
 
     async getPlusIconEle() {
-        return await $(this.locators.plusIcon);
+        return this.getElement(this.locators.plusIcon);
     }
 
     async getExploreMoreEle() {
-        return await $(this.locators.exploreMore);
+        return this.getElement(this.locators.exploreMore);
     }
 
 
     async clickExploreButton() {
-        (await $(this.locators.exploreMore)).waitForDisplayed();
-        (await $(this.locators.exploreMore)).click();
+        await this.waitForDisplayed(this.locators.exploreMore);
+        await this.click(this.locators.exploreMore);
     }
 }
 

@@ -1,6 +1,7 @@
+const BasePage = require("./base/basePage");
 
 
-class CartPage {
+class CartPage extends BasePage {
 
     locators = {
         deleteIcon: 'id:com.ultralesson.ulshopify:id/icon-delete',
@@ -14,22 +15,23 @@ class CartPage {
     }
 
     async getTotalPriceEle() {
-        return $(this.locators.totalPrice);
+        return this.getElement(this.locators.totalPrice);
     }
 
     async getPlaceOrderEle() {
-        return $(this.locators.placeOrder);
+        return this.getElement(this.locators.placeOrder);
     }
 
     async getOrderConfirmationLabelEle() {
-        return $(this.locators.orderConfirmationLabel);
+        return this.getElement(this.locators.orderConfirmationLabel);
     }
 
     async clickPlaceOrderButton() {
-        await (await this.getPlaceOrderEle()).waitForDisplayed({ timeout: 10000 });
-        (await this.getPlaceOrderEle()).click();
+        await driver.pause(4000);
+        await this.waitForDisplayed(await this.getPlaceOrderEle());
+        await this.click(await this.getPlaceOrderEle());
     }
-
+    
 }
 
 module.exports = CartPage;

@@ -1,11 +1,12 @@
 
 
 const { XpathUtil } = require('../../utilities/xpath/xpathUtils');
+const BasePage = require('./base/basePage');
 
 
 
 
-class OtpPage {
+class OtpPage extends BasePage {
 
     locators = {
         otp: 'id:com.ultralesson.ulshopify:id/inp-opt-##PLACEHOLDER##',
@@ -13,7 +14,7 @@ class OtpPage {
     }
 
     async getOtpEle(index) {
-        return await $(XpathUtil.getPlaceholderReplaced(this.locators.otp, index));
+        return this.getElement(XpathUtil.getPlaceholderReplaced(this.locators.otp, index));
     }
 
     async enterOtp(otp) {
@@ -27,8 +28,9 @@ class OtpPage {
         for (let i = 0; i < otpElements.length; i++) {
             await otpElements[i].addValue(otp.charAt(i));
         }
-        await (await $(this.locators.verifyButton)).waitForDisplayed();
-        await $(this.locators.verifyButton).click();
+
+        await this.waitForDisplayed(this.locators.verifyButton);
+        await this.click(this.locators.verifyButton);
         await driver.pause(4000);
     }
 }
