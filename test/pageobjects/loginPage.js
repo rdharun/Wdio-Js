@@ -1,7 +1,9 @@
+const BasePage = require("./base/basePage");
 
 
 
-class LoginPage {
+class LoginPage extends BasePage {
+
 
     locators = {
         profileEle: "#icon-profile",
@@ -16,36 +18,34 @@ class LoginPage {
     }
 
     async getEmailFieldErrMsgEle() {
-        return $(this.locators.emailFieldErrMsg);
+        return this.getElement(this.locators.emailFieldErrMsg);
+        // return $(this.locators.emailFieldErrMsg);
     }
 
     async getPasswordFieldErrMsgEle() {
-        return $(this.locators.passwordFieldErrMsg);
+        return this.getElement(this.locators.passwordFieldErrMsg);
+        // return $(this.locators.passwordFieldErrMsg);
     }
 
     async getInvalidEmailFormatMsgEle() {
-        return $(this.locators.invalidEmailFormatMsg);
+        return this.getElement(this.locators.invalidEmailFormatMsg);
     }
 
     async getWrongPasswordLabelEle() {
-        return $(this.locators.wrongPasswordLabel);
+        return this.getElement(this.locators.wrongPasswordLabel);
     }
 
     async enterCredentials(username, password) {
-        const emailInputField = await $(this.locators.emailInputField);
-        await emailInputField.waitForDisplayed({ timeout: 5000 });
-        await emailInputField.setValue(username);
+        await this.waitForDisplayed(this.locators.emailInputField);
+        await this.setValue(this.locators.emailInputField, username)
 
-        const passwordInputField = await $(this.locators.passwordInputField);
-        await passwordInputField.waitForDisplayed({ timeout: 5000 }); // Wait for password input field to be displayed
-        await passwordInputField.setValue(password);
+        await this.waitForDisplayed(this.locators.passwordInputField);
+        await this.setValue(this.locators.passwordInputField, password)
     }
 
     async clickOnLoginButton() {
-        (await $(this.locators.loginButton)).waitForDisplayed({ timeout: 3000 });
-        (await $(this.locators.loginButton)).click();
-        // await this.waitForDisplayed(this.locators.loginButton);
-        // await this.click(this.locators.loginButton);
+        await this.waitForDisplayed(this.locators.loginButton);
+        await this.click(this.locators.loginButton);
     }
 
 }

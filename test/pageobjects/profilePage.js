@@ -1,10 +1,10 @@
 
 
-const HomePage = require('../pageobjects/homePage')
+const BasePage = require('./base/basePage');
 
 
-class ProfilePage {
-
+class ProfilePage extends BasePage {
+    
     locators = {
         registerButton: `#txt-register`,
         loginButton: `#txt-login`,
@@ -15,20 +15,12 @@ class ProfilePage {
 
 
     async getLogoutButtonEle() {
-        return $(this.locators.logutButton);
+        return this.getElement(this.locators.logutButton);
     }
 
     async clickOnLoginButton() {
-        (await $(this.locators.loginButton)).click();
+        await this.click(this.locators.loginButton);
     }
-
-    // async logout() {
-    //     if ((await HomePage.getProfileEle()).isDisplayed()) {
-    //         (await HomePage.getProfileEle()).click();
-    //     }
-    //     (await $(this.locators.logutButton)).click();
-    // }
-
 
 }
 

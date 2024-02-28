@@ -1,8 +1,9 @@
+const BasePage = require("./base/basePage");
 
 
 
 
-class ProductPage {
+class ProductPage extends BasePage {
 
     locators = {
         productTitle: 'id:com.ultralesson.ulshopify:id/txt-product-title',
@@ -12,23 +13,23 @@ class ProductPage {
 
 
     async getProductTitle() {
-        return $$(this.locators.productTitle);
+        return this.getElements(this.locators.productTitle);
     }
 
     async getAddToCartButtonEle() {
-        return $(this.locators.addToCartButton);
+        return this.getElement(this.locators.addToCartButton);
     }
 
     async getGoToCartButtonEle() {
-        return $(this.locators.goToCartButton);
+        return this.getElement(this.locators.goToCartButton);
     }
 
     async clickGoToCartButton() {
-        (await $(this.locators.goToCartButton)).click();
+        await this.click(this.locators.goToCartButton);
     }
 
     async clickAddToCartButton() {
-        (await $(this.locators.addToCartButton)).click();
+        await this.click(this.locators.addToCartButton);
     }
 
     async findProductElementByName(productName) {
