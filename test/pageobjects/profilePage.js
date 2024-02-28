@@ -4,10 +4,10 @@ const BasePage = require('./base/basePage');
 
 
 class ProfilePage extends BasePage {
-    
+
     locators = {
-        registerButton: `#txt-register`,
-        loginButton: `#txt-login`,
+        registerButton: 'id:com.ultralesson.ulshopify:id/txt-register',
+        loginButton: 'id:com.ultralesson.ulshopify:id/txt-login',
         logutButton: 'id:com.ultralesson.ulshopify:id/txt-logout'
 
     }

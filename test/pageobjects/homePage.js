@@ -6,7 +6,7 @@ const BasePage = require("./base/basePage");
 class HomePage extends BasePage {
 
     locators = {
-        profileEle: `#icon-profile`,
+        profileEle: 'id:com.ultralesson.ulshopify:id/icon-profile',
         userNameEle: "id:com.ultralesson.ulshopify:id/txt-username",
         searchForMoreEle: 'id:com.ultralesson.ulshopify:id/txt-search-for-more',
         searchInput: 'id:com.ultralesson.ulshopify:id/inp-search',

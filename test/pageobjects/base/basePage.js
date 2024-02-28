@@ -15,7 +15,6 @@ class BasePage {
 
     async click(selector) {
         const element = await this.getElement(selector);
-        // await element.waitForDisplayed({ timeoutMsg: 'Element not displayed for click action' });
         await element.click();
     }
 
@@ -31,7 +30,6 @@ class BasePage {
 
     async isDisplayed(selector) {
         const element = await this.getElement(selector);
-        // await element.waitForDisplayed({ timeoutMsg: 'Element not displayed' });
         return element.isDisplayed();
     }
 

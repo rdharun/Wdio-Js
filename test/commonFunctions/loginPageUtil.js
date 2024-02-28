@@ -29,6 +29,7 @@ class LoginPageUtil extends BasePage {
         if (await this.isDisplayed(await homePage.getProfileEle())) {
             await this.click(await homePage.getProfileEle());
         }
+        await driver.pause(2000);
         await this.click(await profilePage.getLogoutButtonEle());
     }
 }
