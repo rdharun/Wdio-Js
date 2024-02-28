@@ -12,8 +12,6 @@ class ProfilePage extends BasePage {
 
     }
 
-
-
     async getLogoutButtonEle() {
         return this.getElement(this.locators.logutButton);
     }

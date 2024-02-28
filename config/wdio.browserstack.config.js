@@ -17,7 +17,6 @@ exports.config = {
         'browserstack',
         {
           app: 'bs://8fe087e80c94a64a3a1d3aaef111ce3687053799',
-          // buildIdentifier: "${DATE_TIME}",
           browserstackLocal: false
         },
       ]

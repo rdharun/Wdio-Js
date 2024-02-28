@@ -31,7 +31,7 @@ class CartPage extends BasePage {
         await this.waitForDisplayed(await this.getPlaceOrderEle());
         await this.click(await this.getPlaceOrderEle());
     }
-
+    
 }
 
 module.exports = CartPage;
