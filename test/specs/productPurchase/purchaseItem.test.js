@@ -1,7 +1,6 @@
 const { expect } = require('chai');
 const OtpPage = require('../../pageobjects/otpPage');
 const HomePage = require('../../pageobjects/homePage');
-const BaseActions = require('../../../utilities/actions/baseActions');
 const ProductPage = require('../../pageobjects/productPage');
 const CheckoutPage = require('../../pageobjects/checkoutPage');
 const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
@@ -17,7 +16,6 @@ describe('My Login application', () => {
     let productPage;
     let checkoutPage;
     let loginPageUtil;
-    let baseActions;
     let otpPage;
     let paymentPage;
 
@@ -28,7 +26,6 @@ describe('My Login application', () => {
         productPage = new ProductPage();
         checkoutPage = new CheckoutPage();
         loginPageUtil = new LoginPageUtil();
-        baseActions = new BaseActions();
         otpPage = new OtpPage();
         paymentPage = new PaymentPage();
         await loginPageUtil.login(validCredentials.username, validCredentials.password);
