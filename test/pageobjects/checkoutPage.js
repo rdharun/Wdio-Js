@@ -1,7 +1,7 @@
 const BasePage = require("./base/basePage");
 
 
-class CartPage extends BasePage {
+class CheckoutPage extends BasePage {
 
     locators = {
         deleteIcon: 'id:com.ultralesson.ulshopify:id/icon-delete',
@@ -34,4 +34,4 @@ class CartPage extends BasePage {
     
 }
 
-module.exports = CartPage;
+module.exports = CheckoutPage;
