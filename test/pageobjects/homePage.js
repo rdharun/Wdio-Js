@@ -55,15 +55,15 @@ class HomePage extends BasePage {
                     await this.swipeHorizontalOnSectionTillElement(XpathUtil.getPlaceholderReplaced(this.locators.productsSectionDynamic, sectionType), this.locators.exploreMore);
                     break;
                 case HomePage.sectionType.trendingProducts:
-                    await this.swipeHorizontalOnSectionTillElement(XpathUtil.getPlaceholderReplaced(this.locators.productsSectionDynamic, sectionType), this.locators.exploreMoreButton);
+                    await this.swipeHorizontalOnSectionTillElement(XpathUtil.getPlaceholderReplaced(this.locators.productsSectionDynamic, sectionType), this.locators.exploreMore);
                     break;
                 case HomePage.sectionType.topRatedProducts:
                     await this.swipeTillElement(this.locators.bestSellersTitle);
-                    await this.swipeHorizontalOnSectionTillElement(XpathUtil.getPlaceholderReplaced(this.locators.productsSectionDynamic, sectionType), this.locators.exploreMoreButton);
+                    await this.swipeHorizontalOnSectionTillElement(XpathUtil.getPlaceholderReplaced(this.locators.productsSectionDynamic, sectionType), this.locators.exploreMore);
                     break;
                 case HomePage.sectionType.bestSellers:
                     await this.swipeTillElement(this.locators.footer);
-                    await this.swipeHorizontalOnSectionTillElement(XpathUtil.getPlaceholderReplaced(this.locators.productsSectionDynamic, sectionType), this.locators.exploreMoreButton);
+                    await this.swipeHorizontalOnSectionTillElement(XpathUtil.getPlaceholderReplaced(this.locators.productsSectionDynamic, sectionType), this.locators.exploreMore);
                     break;
                 default: throw new Error(`Invalid Section: ${sectionType}.`);
             }
