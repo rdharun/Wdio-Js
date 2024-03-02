@@ -1,6 +1,6 @@
 
 
-const { XpathUtil } = require('../../utilities/xpath/xpathUtils');
+const { XpathUtil } = require('../../utilities/common/xpathUtils');
 const BasePage = require('./base/basePage');
 
 

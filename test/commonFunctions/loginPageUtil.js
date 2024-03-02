@@ -14,7 +14,7 @@ class LoginPageUtil extends BasePage {
 
     async login(username, password) {
 
-        await browser.pause(10000);
+        await this.waitForElementDisplayed(await homePage.getWelcomeBackEle(), 10000, true);
         if (await this.isDisplayed(await homePage.getProfileEle())) {
             await this.click(await homePage.getProfileEle());
         }
