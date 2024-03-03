@@ -3,7 +3,6 @@ const SwipeUtils = require('../../../utilities/actions/swipeUtils');
 
 class BasePage {
 
-    timeout = 10000;
     swipeUtils;
 
     constructor() {
