@@ -23,7 +23,7 @@ exports.config = {
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
-    port: 4723,
+    port: 5080,
     //
     // ==================
     // Specify Test Files
@@ -117,7 +117,7 @@ exports.config = {
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 360000,
     //
     // Default request retries count
     connectionRetryCount: 3,

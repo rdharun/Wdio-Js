@@ -4,7 +4,7 @@ const HomePage = require('../../pageobjects/homePage');
 const ProfilePage = require('../../pageobjects/profilePage');
 const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
 const jsonData = require("../../../resources/credentials.json")
-const Logger = require('../../../utilities/customLogger/loggerHelper');
+const LOGGER = require('../../../utilities/customLogger/loggerHelper');
 
 
 describe('My Login application', () => {
@@ -15,7 +15,6 @@ describe('My Login application', () => {
     let otpPage;
     let loginPageUtil;
     let validCredentials;
-    let LOGGER;
 
     const specName = 'Test_login_scenarios';
     before(async () => {
@@ -24,7 +23,7 @@ describe('My Login application', () => {
         otpPage = new OtpPage();
         loginPageUtil = new LoginPageUtil();
         validCredentials = jsonData.credentialsSets.validCredentials;
-        LOGGER = new Logger(specName);
+        LOGGER.initialize(specName);
     });
 
     afterEach(async () => {

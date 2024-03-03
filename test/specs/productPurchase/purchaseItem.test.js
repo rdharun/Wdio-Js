@@ -7,6 +7,7 @@ const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
 const jsonData = require("../../../resources/productDetails.json")
 const credentialsJson = require("../../../resources/credentials.json")
 const PaymentPage = require('../../pageobjects/paymentPage');
+const LOGGER = require('../../../utilities/customLogger/loggerHelper');
 
 describe('My Login application', () => {
 
@@ -19,6 +20,7 @@ describe('My Login application', () => {
     let otpPage;
     let paymentPage;
 
+    const specName = 'E2E Purchase';
     before(async () => {
         validCredentials = credentialsJson.credentialsSets.validCredentials;
         productDetails = jsonData;
@@ -30,6 +32,7 @@ describe('My Login application', () => {
         paymentPage = new PaymentPage();
         await loginPageUtil.login(validCredentials.username, validCredentials.password);
         await otpPage.enterOtp(validCredentials.otp);
+        LOGGER.initialize(specName);
     })
 
     afterEach(async () => {
@@ -39,23 +42,28 @@ describe('My Login application', () => {
 
 
     it('Should be able to place a an order with single product', async () => {
-     
-        // Click on explore more
-        await homePage.clickOnExploreMoreButton(HomePage.sectionType.newArrivals);
 
-        await driver.pause(10000);
-        await productPage.selectProductByName(productDetails[1].productName);
+        try {
+            // Click on explore more
+            await homePage.clickOnExploreMoreButton(HomePage.sectionType.newArrivals);
 
-        // Click on add to cart
-        await productPage.clickAddToCartButton();
-        await productPage.clickGoToCartButton();
-        await checkoutPage.clickPlaceOrderButton();
+            await driver.pause(10000);
+            await productPage.selectProductByName(productDetails[1].productName);
 
-        // Wait for order confirmation label to be displayed and get the text
-        const orderMsgElement = await paymentPage.getOrderConfirmationLabelEle();
-        expect(orderMsgElement).to.contain('Your order has been confirmed');
-        await paymentPage.clickContinueShoppingButton();
-        await driver.pause(2000)
+            // Click on add to cart
+            await productPage.clickAddToCartButton();
+            await productPage.clickGoToCartButton();
+            await checkoutPage.clickPlaceOrderButton();
+
+            // Wait for order confirmation label to be displayed and get the text
+            const orderMsgElement = await paymentPage.getOrderConfirmationLabelEle();
+            expect(orderMsgElement).to.contain('Your order has been confirmed');
+            await paymentPage.clickContinueShoppingButton();
+            await driver.pause(2000);
+        } catch (error) {
+            LOGGER.error('An error occurred during the test:', error);
+            throw error;
+        }
 
     })
 })
