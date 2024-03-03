@@ -1,4 +1,4 @@
-const BasePage = require("./base/basePage");
+const BasePage = require("../base/basePage");
 
 
 

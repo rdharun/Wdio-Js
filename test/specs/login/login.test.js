@@ -1,7 +1,7 @@
 const { expect } = require('chai');
-const OtpPage = require('../../pageobjects/otpPage');
-const HomePage = require('../../pageobjects/homePage');
-const ProfilePage = require('../../pageobjects/profilePage');
+const OtpPage = require('../../pageobjects/loginPage/otpPage');
+const HomePage = require('../../pageobjects/homePage/homePage');
+const ProfilePage = require('../../pageobjects/profilePage/profilePage');
 const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
 const jsonData = require("../../../resources/credentials.json")
 const LOGGER = require('../../../utilities/customLogger/loggerHelper');
@@ -18,6 +18,7 @@ describe('My Login application', () => {
 
     const specName = 'Test_login_scenarios';
     before(async () => {
+        // Arrange
         homePage = new HomePage();
         profilePage = new ProfilePage();
         otpPage = new OtpPage();
@@ -34,9 +35,13 @@ describe('My Login application', () => {
     it('should login with valid credentials', async () => {
         try {
             LOGGER.info('starting the test')
+
+            // Act
             await loginPageUtil.login(validCredentials.username, validCredentials.password);
             await otpPage.enterOtp(validCredentials.otp);
             const userNameText = await (await homePage.getUserNameEle()).getText();
+
+            // Assert
             expect(userNameText).to.equal('Jack Sparrow');
             LOGGER.info('ending the test');
         } catch (error) {
