@@ -1,12 +1,12 @@
 const { expect } = require('chai');
-const OtpPage = require('../../pageobjects/otpPage');
-const HomePage = require('../../pageobjects/homePage');
-const ProductPage = require('../../pageobjects/productPage');
-const CheckoutPage = require('../../pageobjects/checkoutPage');
+const OtpPage = require('../../pageobjects/loginPage/otpPage');
+const HomePage = require('../../pageobjects/homePage/homePage');
+const ProductPage = require('../../pageobjects/productPage/productPage');
+const CheckoutPage = require('../../pageobjects/checkoutPage/checkoutPage');
 const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
 const jsonData = require("../../../resources/productDetails.json")
 const credentialsJson = require("../../../resources/credentials.json")
-const PaymentPage = require('../../pageobjects/paymentPage');
+const PaymentPage = require('../../pageobjects/paymentPage/paymentPage');
 const LOGGER = require('../../../utilities/customLogger/loggerHelper');
 
 describe('My Login application', () => {
@@ -22,6 +22,7 @@ describe('My Login application', () => {
 
     const specName = 'E2E Purchase';
     before(async () => {
+        // Arrange
         validCredentials = credentialsJson.credentialsSets.validCredentials;
         productDetails = jsonData;
         homePage = new HomePage();
@@ -44,6 +45,8 @@ describe('My Login application', () => {
     it('Should be able to place a an order with single product', async () => {
 
         try {
+
+            // Act
             // Click on explore more
             await homePage.clickOnExploreMoreButton(HomePage.sectionType.newArrivals);
 
@@ -55,6 +58,7 @@ describe('My Login application', () => {
             await productPage.clickGoToCartButton();
             await checkoutPage.clickPlaceOrderButton();
 
+            // Assert
             // Wait for order confirmation label to be displayed and get the text
             const orderMsgElement = await paymentPage.getOrderConfirmationLabelEle();
             expect(orderMsgElement).to.contain('Your order has been confirmed');

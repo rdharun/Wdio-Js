@@ -1,6 +1,6 @@
 
 
-const BasePage = require('./base/basePage');
+const BasePage = require('../base/basePage');
 
 
 class ProfilePage extends BasePage {

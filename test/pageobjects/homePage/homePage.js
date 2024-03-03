@@ -1,6 +1,6 @@
-const { XpathUtil } = require("../../utilities/common/xpathUtils");
-const BasePage = require("./base/basePage");
-const LOGGER = require("../../utilities/customLogger/loggerHelper")
+const { XpathUtil } = require("../../../utilities/common/xpathUtils");
+const BasePage = require("../base/basePage");
+const LOGGER = require("../../../utilities/customLogger/loggerHelper")
 
 
 

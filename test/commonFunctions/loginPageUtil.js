@@ -1,8 +1,8 @@
 
 
-const LoginPage = require('../pageobjects/loginPage');
-const HomePage = require('../pageobjects/homePage');
-const ProfilePage = require('../pageobjects/profilePage');
+const LoginPage = require('../pageobjects/loginPage/loginPage');
+const HomePage = require('../pageobjects/homePage/homePage');
+const ProfilePage = require('../pageobjects/profilePage/profilePage');
 const BasePage = require('../pageobjects/base/basePage');
 
 
@@ -29,7 +29,7 @@ class LoginPageUtil extends BasePage {
         if (await this.isDisplayed(await homePage.getProfileEle())) {
             await this.click(await homePage.getProfileEle());
         }
-        await driver.pause(2000);
+        await this.waitForElementDisplayed(await profilePage.getLogoutButtonEle(), 2000)
         await this.click(await profilePage.getLogoutButtonEle());
     }
 }
