@@ -18,6 +18,8 @@ class HomePage extends BasePage {
         productsSectionDynamic: "(//android.widget.TextView[@text='##PLACEHOLDER##']/parent::*/parent::*/child::*)[3]",
         footer: "id:com.ultralesson.ulshopify:id/txt-footer",
         bestSellersTitle: "//android.widget.TextView[@text='Best Sellers']",
+        exploreTab: "id:com.ultralesson.ulshopify:id/icon-explore",
+        
 
     }
 
@@ -40,9 +42,6 @@ class HomePage extends BasePage {
         return this.getElement(this.locators.profileEle);
     }
 
-    async getPlusIconEle() {
-        return this.getElement(this.locators.plusIcon);
-    }
 
     async getExploreMoreEle() {
         return this.getElement(this.locators.exploreMore);

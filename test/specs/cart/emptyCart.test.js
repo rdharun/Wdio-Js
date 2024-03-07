@@ -6,21 +6,20 @@ const CheckoutPage = require('../../pageobjects/checkoutPage/checkoutPage');
 const LoginPageUtil = require('../../commonFunctions/loginPageUtil');
 const jsonData = require("../../../resources/productDetails.json")
 const credentialsJson = require("../../../resources/credentials.json")
-const PaymentPage = require('../../pageobjects/paymentPage/paymentPage');
 const LOGGER = require('../../../utilities/customLogger/loggerHelper');
+const ExploreProductsPage = require('../../pageobjects/explorePage/exploreProductsPage')
 
-describe('My Login application', () => {
+describe('Emptying the Cart', () => {
 
     let validCredentials;
-    let productDetails;
     let homePage;
     let productPage;
     let checkoutPage;
     let loginPageUtil;
     let otpPage;
-    let paymentPage;
+    let exploreProductsPage
 
-    const specName = 'E2E Purchase';
+    const specName = 'Empty Cart';
     before(async () => {
         // Arrange
         validCredentials = credentialsJson.credentialsSets.validCredentials;
@@ -30,44 +29,34 @@ describe('My Login application', () => {
         checkoutPage = new CheckoutPage();
         loginPageUtil = new LoginPageUtil();
         otpPage = new OtpPage();
-        paymentPage = new PaymentPage();
+        exploreProductsPage = new ExploreProductsPage();
         await loginPageUtil.login(validCredentials.username, validCredentials.password);
         await loginPageUtil.enterOtpAndClickOnVerifyButton(validCredentials.otp);
         LOGGER.initialize(specName);
     })
 
-    afterEach(async () => {
-        await loginPageUtil.logout();
-    })
 
-
-
-    it('Should be able to place a an order with single product', async () => {
+    it('Should remove the items from a non-empty cart', async () => {
 
         try {
-
             // Act
-            // Click on explore more
             await homePage.clickOnExploreMoreButton(HomePage.sectionType.newArrivals);
-
-            await driver.pause(10000);
-            await productPage.selectProductByName(productDetails[1].productName);
-
-            // Click on add to cart
+            await exploreProductsPage.clickOnProduct('Elegant Suite');
+            await productPage.clickAddToCartButton();
+            await productPage.clickBackButton();
+            await homePage.clickOnExploreMoreButton(HomePage.sectionType.topRatedProducts);
+            await exploreProductsPage.clickOnProduct('Winter Thermal Jacket');
             await productPage.clickAddToCartButton();
             await productPage.clickGoToCartButton();
-            await checkoutPage.clickPlaceOrderButton();
+            await checkoutPage.emptyCart();
 
             // Assert
-            // Wait for order confirmation label to be displayed and get the text
-            const orderMsgElement = await paymentPage.getOrderConfirmationLabelEle();
-            expect(orderMsgElement).to.contain('Your order has been confirmed');
-            await paymentPage.clickContinueShoppingButton();
-            await driver.pause(2000);
+            const emptyCartMsgText = await checkoutPage.getEmptyCartMsgText();
+            expect(emptyCartMsgText).to.equal('Your Cart is Empty!!');
+
         } catch (error) {
             LOGGER.error('An error occurred during the test:', error);
             throw error;
         }
-
     })
 })

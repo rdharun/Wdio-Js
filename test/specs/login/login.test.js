@@ -38,7 +38,7 @@ describe('My Login application', () => {
 
             // Act
             await loginPageUtil.login(validCredentials.username, validCredentials.password);
-            await otpPage.enterOtp(validCredentials.otp);
+            await loginPageUtil.enterOtpAndClickOnVerifyButton(validCredentials.otp);
             const userNameText = await (await homePage.getUserNameEle()).getText();
 
             // Assert

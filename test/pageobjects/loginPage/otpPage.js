@@ -28,7 +28,9 @@ class OtpPage extends BasePage {
         for (let i = 0; i < otpElements.length; i++) {
             await otpElements[i].addValue(otp.charAt(i));
         }
+    }
 
+    async clickOnVerifyButton() {
         await this.waitForDisplayed(this.locators.verifyButton);
         await this.click(this.locators.verifyButton);
         await driver.pause(4000);

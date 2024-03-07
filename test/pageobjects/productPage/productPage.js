@@ -8,7 +8,8 @@ class ProductPage extends BasePage {
     locators = {
         productTitle: 'id:com.ultralesson.ulshopify:id/txt-product-title',
         addToCartButton: 'id:com.ultralesson.ulshopify:id/txt-add-to-cart',
-        goToCartButton: 'id:com.ultralesson.ulshopify:id/txt-go-to-cart'
+        goToCartButton: 'id:com.ultralesson.ulshopify:id/txt-go-to-cart',
+        backButton: "id:com.ultralesson.ulshopify:id/btn-back"
     }
 
 
@@ -30,6 +31,10 @@ class ProductPage extends BasePage {
 
     async clickAddToCartButton() {
         await this.click(this.locators.addToCartButton);
+    }
+
+    async clickBackButton() {
+        await this.click(this.locators.backButton);
     }
 
     async findProductElementByName(productName) {
