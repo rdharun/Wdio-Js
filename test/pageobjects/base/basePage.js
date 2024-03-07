@@ -99,7 +99,7 @@ class BasePage {
             section = await this.getElement(section);
             element = await this.getElement(element);
     
-            await this.swipeTillElement(section);
+            // await this.swipeTillElement(section);
             await this.waitForDisplayed(section);
             const elementSize = await section.getSize();
             const elementLocation = await section.getLocation();
